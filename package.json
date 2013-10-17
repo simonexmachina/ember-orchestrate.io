@@ -1,0 +1,33 @@
+{
+  "name": "ember-orchestrate.io",
+  "version": "0.1.0",
+  "description": "An Ember Data adapter for Orchestrate.io",
+  "homepage": "https://github.com/simonwade/ember-orchestrate.io",
+  "bugs": "https://github.com/simonwade/ember-orchestrate.io/issues",
+  "author": {
+    "name": "Simon Wade",
+    "email": "simon.wade@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:simonwade/ember-orchestrate.io.git"
+  },
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ],
+  "devDependencies": {
+    "grunt-contrib-watch": "~0.5.0",
+    "grunt-contrib-coffee": "~0.7.0",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-coffeelint": "~0.0.7",
+    "grunt-simple-mocha": "~0.4.0",
+    "should": "~1.2.2",
+    "matchdep": "~0.1.2",
+    "mocha-cakes": "~0.9.0",
+    "grunt": "~0.4.1",
+    "grunt-contrib-connect": "~0.5.0",
+    "http-proxy": "~0.10.3"
+  }
+}
