@@ -54,6 +54,10 @@ DS.OrchestrateIOAdapter = DS.RESTAdapter.extend(Ember.Evented,
 )
 
 DS.OrchestrateIOSerializer = DS.RESTSerializer.extend
+  serialize: (record, options)->
+    unless options then options = {}
+    options.includeId = true
+    @_super record, options
   extractSingle: (store, primaryType, payload, recordId, requestType)->
     results = payload
     payloadForSuper = {}

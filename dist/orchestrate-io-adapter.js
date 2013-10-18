@@ -38,13 +38,12 @@ Licensed under the MIT license.
       } else {
         for (property in query) {
           value = query[property];
-          if (!value) {
-            $.error('Searching for empty properties is currently not supported');
-          } else if (typeof value.test === 'function') {
-            $.error('Regular expressions are currently not supported ');
-          } else {
-            params.push("" + property + ":" + value);
+          if (value === null) {
+            value = "NOT *";
+          } else if (value === "") {
+            value = "''";
           }
+          params.push("" + property + ":" + value);
         }
       }
       return this._query(store, type, params);
@@ -80,6 +79,13 @@ Licensed under the MIT license.
   });
 
   DS.OrchestrateIOSerializer = DS.RESTSerializer.extend({
+    serialize: function(record, options) {
+      if (!options) {
+        options = {};
+      }
+      options.includeId = true;
+      return this._super(record, options);
+    },
     extractSingle: function(store, primaryType, payload, recordId, requestType) {
       var payloadForSuper, results;
       results = payload;
