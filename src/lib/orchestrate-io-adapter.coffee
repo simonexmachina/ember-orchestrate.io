@@ -32,12 +32,9 @@ DS.OrchestrateIOAdapter = DS.RESTAdapter.extend(Ember.Evented,
       params = [query]
     else
       for property, value of query
-        if !value
-          $.error 'Searching for empty properties is currently not supported'
-        else if typeof value.test == 'function'
-          $.error 'Regular expressions are currently not supported '
-        else
-          params.push "#{property}:#{value}"
+        if value == null then value = "NOT *"
+        else if value == "" then value = "''"
+        params.push "#{property}:#{value}"
     @_query store, type, params
   _query: (store, type, params)->
     @ajax @buildURL(type.typeKey), 'GET', data: query: params.join ' '
