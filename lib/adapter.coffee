@@ -1,14 +1,11 @@
 ###
-
 ember-orchestrate.io
 https://github.com/simonwade/ember-orchestrate.io
 
 Copyright (c) 2013
 Licensed under the MIT license.
-
 ###
 
-'use strict'
 DS.OrchestrateIOAdapter = DS.RESTAdapter.extend(Ember.Evented,
 
   apiKey: null
@@ -61,12 +58,14 @@ DS.OrchestrateIOSerializer = DS.RESTSerializer.extend
   extractSingle: (store, primaryType, payload, recordId, requestType)->
     results = payload
     payloadForSuper = {}
-    payloadForSuper[primaryType.typeKey] = results.value[primaryType]
+    payloadForSuper[primaryType.typeKey] = results[primaryType.typeKey]
     @_super store, primaryType, payloadForSuper, recordId, requestType
   extractArray: (store, primaryType, payload)->
     results = []
     for result in payload.results
-      results.push result.value[primaryType.typeKey]
+      # @todo should we warn in this case?
+      if result.value[primaryType.typeKey]
+        results.push result.value[primaryType.typeKey]
     payloadForSuper = {}
     payloadForSuper[primaryType.typeKey] = results
     @_super store, primaryType, payloadForSuper

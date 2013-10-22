@@ -1,3 +1,5 @@
+# beware this won't work if you have a bodyParser in your middleware!
+# let me know if you'd like the later technique
 orchestrateIoProxy = ->
   httpProxy = require("http-proxy")
   proxy = new httpProxy.RoutingProxy()
@@ -15,8 +17,8 @@ orchestrateIoProxy = ->
 
 middleware = (connect, options)->
   [
-    connect["static"](options.base),
-    connect.directory(options.base),
+    connect.static(options.base),
+    # connect.directory(options.base),
     orchestrateIoProxy()
   ]
 
@@ -24,7 +26,7 @@ module.exports =
   connect:
     server:
       options:
-        port: process.env.PORT or 8000
+        port: process.env.port or 8000
         hostname: "0.0.0.0"
         # base: "/"
         middleware: middleware

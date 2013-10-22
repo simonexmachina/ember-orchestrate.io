@@ -1,5 +1,4 @@
 /*
-
 ember-orchestrate.io
 https://github.com/simonwade/ember-orchestrate.io
 
@@ -9,7 +8,6 @@ Licensed under the MIT license.
 
 
 (function() {
-  'use strict';
   DS.OrchestrateIOAdapter = DS.RESTAdapter.extend(Ember.Evented, {
     apiKey: null,
     host: 'http://api.orchestrate.io',
@@ -90,7 +88,7 @@ Licensed under the MIT license.
       var payloadForSuper, results;
       results = payload;
       payloadForSuper = {};
-      payloadForSuper[primaryType.typeKey] = results.value[primaryType];
+      payloadForSuper[primaryType.typeKey] = results[primaryType.typeKey];
       return this._super(store, primaryType, payloadForSuper, recordId, requestType);
     },
     extractArray: function(store, primaryType, payload) {
@@ -99,7 +97,9 @@ Licensed under the MIT license.
       _ref = payload.results;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         result = _ref[_i];
-        results.push(result.value[primaryType.typeKey]);
+        if (result.value[primaryType.typeKey]) {
+          results.push(result.value[primaryType.typeKey]);
+        }
       }
       payloadForSuper = {};
       payloadForSuper[primaryType.typeKey] = results;

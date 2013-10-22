@@ -16,8 +16,8 @@ module.exports = (grunt)->
         src: '<%= watch.gruntfile.files %>'
       lib:
         src: '<%= watch.lib.files %>'
-      test:
-        src: '<%= watch.test.files %>'
+      # test:
+      #   src: '<%= watch.test.files %>'
       options:
         no_trailing_whitespace:
           level: 'error'
@@ -26,21 +26,21 @@ module.exports = (grunt)->
     coffee:
       lib:
         expand: true
-        cwd: 'src/lib/'
-        src: ['**/*.coffee']
+        cwd: 'lib/'
+        src: ['**.coffee']
         dest: 'dist/'
         ext: '.js'
-      test:
-        expand: true
-        cwd: 'src/test/'
-        src: ['**/*.coffee']
-        dest: 'dist/test/'
-        ext: '.js'
+      # test:
+      #   expand: true
+      #   cwd: 'lib/test/'
+      #   src: ['**.coffee']
+      #   dest: 'dist/test/'
+      #   ext: '.js'
     simplemocha:
       all:
         src: [
           'node_modules/should/lib/should.js'
-          'dist/test/**/*.js'
+          'dist/test/**.js'
         ]
         options:
           globals: ['should']
@@ -55,11 +55,11 @@ module.exports = (grunt)->
         files: 'Gruntfile.coffee'
         tasks: ['coffeelint:gruntfile']
       lib:
-        files: ['src/lib/**/*.coffee']
+        files: ['lib/**.coffee']
         tasks: ['coffeelint:lib', 'coffee:lib', 'simplemocha']
-      test:
-        files: ['src/test/**/*.coffee']
-        tasks: ['coffeelint:test', 'coffee:test', 'simplemocha']
+      # test:
+      #   files: ['test/**.coffee']
+      #   tasks: ['coffeelint:test', 'coffee:test', 'simplemocha']
     clean: ['dist/']
 
   grunt.event.on 'watch', (action, files, target)->
