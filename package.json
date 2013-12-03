@@ -17,6 +17,10 @@
       "type": "MIT"
     }
   ],
+  "scripts": {
+    "build": "coffee -o dist/ lib/",
+    "watch": "coffee -wo dist/ lib/"
+  },
   "devDependencies": {
     "grunt-contrib-watch": "~0.5.0",
     "grunt-contrib-coffee": "~0.7.0",

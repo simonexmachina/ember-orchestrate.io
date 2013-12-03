@@ -12,7 +12,7 @@ DS.OrchestrateIOAdapter = DS.RESTAdapter.extend(Ember.Evented,
   host: 'http://api.orchestrate.io'
   namespace: 'v0'
 
-  defaultSerializer: '_oio'
+  defaultSerializer: 'oio'
 
   ##
   # @todo sinceToken is ignored
@@ -74,5 +74,5 @@ Ember.onLoad 'Ember.Application', (Application)->
   Application.initializer
     name: "orchestrateIOAdapter"
     initialize: (container, application)->
-      application.register 'serializer:_oio', DS.OrchestrateIOSerializer
-      application.register 'adapter:_oio', DS.OrchestrateIOAdapter
+      application.register 'serializer:oio', DS.OrchestrateIOSerializer
+      application.register 'adapter:oio', DS.OrchestrateIOAdapter
